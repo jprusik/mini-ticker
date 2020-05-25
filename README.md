@@ -1,6 +1,8 @@
 # Mini Ticker
 
-This project is a purpose-built solution for retrieving and displaying various information that is important to the author. Also, it has actions that can be triggered by a button press of NFC/RFID card/tag scan. It aims to have a small footprint, with minimal maintenance.
+This project is a purpose-built solution for retrieving and displaying various information that is important to the author.
+
+Additionally, it has configured interfaces (button presses, NFC/RFID card/tag scan) which can trigger arbitrary actions (e.g. send magic packet). It aims to have a small footprint, with minimal maintenance.
 
 The code provided here is based on examples[^1][^2] from the [pi-rc522](https://github.com/ondryaso/pi-rc522) and [adafruit-circuitpython-ssd1306](https://github.com/adafruit/Adafruit_CircuitPython_SSD1306) projects.
 
@@ -36,6 +38,8 @@ The code provided here is based on examples[^1][^2] from the [pi-rc522](https://
     ```shell
     dtparam=i2c_arm=on,i2c_arm_baudrate=400000
     ```
+  
+  - (Optional) Enable Wake-on-LAN packet sending `sudo apt-get install etherwake`
 
 ### (Optional) If using an RC522 module for RFID/NFC communication
 
