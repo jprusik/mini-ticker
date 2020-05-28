@@ -41,10 +41,10 @@ draw = ImageDraw.Draw(image)
 # Load default font
 # font = ImageFont.load_default()
 
-# load a TTF fonts
-font = ImageFont.truetype('fonts/UbuntuMono-B.ttf', 16)
-alt_font = ImageFont.truetype('fonts/UbuntuMono-R.ttf', 16)
-small_font = ImageFont.truetype('fonts/Ubuntu-C.ttf', 13)
+# Load TTF fonts
+font = ImageFont.truetype('./fonts/UbuntuMono-B.ttf', 16)
+alt_font = ImageFont.truetype('./fonts/UbuntuMono-R.ttf', 16)
+small_font = ImageFont.truetype('./fonts/Ubuntu-C.ttf', 13)
 
 # Draw a black filled box to clear the image.
 def draw_reset():

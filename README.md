@@ -4,14 +4,14 @@ This project is a purpose-built solution for retrieving and displaying various i
 
 Additionally, it has configured interfaces (button presses, NFC/RFID card/tag scan) which can trigger arbitrary actions (e.g. send magic packet). It aims to have a small footprint, with minimal maintenance.
 
-The code provided here is [based](https://github.com/adafruit/Adafruit_CircuitPython_SSD1306/tree/master/examples) on examples ([1](https://github.com/adafruit/Adafruit_CircuitPython_SSD1306/tree/master/examples) [2](https://github.com/ondryaso/pi-rc522/tree/master/examples)) from the [pi-rc522](https://github.com/ondryaso/pi-rc522) and [adafruit-circuitpython-ssd1306](https://github.com/adafruit/Adafruit_CircuitPython_SSD1306) projects.
+The code provided here is based on examples ([1](https://github.com/adafruit/Adafruit_CircuitPython_SSD1306/tree/master/examples), [2](https://github.com/ondryaso/pi-rc522/tree/master/examples)) from the [pi-rc522](https://github.com/ondryaso/pi-rc522) and [adafruit-circuitpython-ssd1306](https://github.com/adafruit/Adafruit_CircuitPython_SSD1306) projects.
 
 ## Requirements
 
 - Raspberry Pi computer with installed header pins and power source
 - [compatible](https://www.raspberrypi.org/documentation/installation/sd-cards.md) microSD/SD card
 - SSD1306-based 128x64 or 128x32 pixel OLED display (I2C)
-- (optional) RC522 module (for RFID/NFC communication)
+- (Optional) RC522 module (for RFID/NFC communication)
 
 ## Setup
 
@@ -19,8 +19,7 @@ The code provided here is [based](https://github.com/adafruit/Adafruit_CircuitPy
 - Set up the Raspberry Pi to run headless and connect it to your network ([guide](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md))
 - [ssh into the Raspberry Pi](https://www.raspberrypi.org/documentation/remote-access/ssh/):
 - Do `sudo raspi-config` and set up:
-  - "Interfacing Options" > "Interfacing Options" > "I2C" > select "Enable"
-  - "Network Options"
+  - "Interfacing Options" > "Interfacing Options" > "I2C" > select "Yes"
   - (Optional) "Localisation Options"
   - (Optional) "Change User Password"
     **Important!** Because we're using a Raspberry Pi, the default user is `pi` with a password of `raspberry` - it is strongly advised to change the password, at minimum.
@@ -30,6 +29,7 @@ The code provided here is [based](https://github.com/adafruit/Adafruit_CircuitPy
   sudo apt update && sudo apt-get install git python3-pip python3-dev libtiff5-dev libopenjp2-7-dev
   ```
 
+- (Optional) Enable Wake-on-LAN packet sending `sudo apt-get install etherwake`
 - Clone this repo and `cd mini-ticker`
 - Install required packages with `pip3 install -r requirements.txt`
 - (Optional) Edit `/boot/config.txt` at the line `dtparam=i2c_arm=on` and replace it with:
@@ -38,7 +38,6 @@ The code provided here is [based](https://github.com/adafruit/Adafruit_CircuitPy
   dtparam=i2c_arm=on,i2c_arm_baudrate=400000
   ```
 
-- (Optional) Enable Wake-on-LAN packet sending `sudo apt-get install etherwake`
 - (Optional) If using an RC522 module for RFID/NFC communication, edit `/boot/config.txt` to include the following settings:
 
   ```settings
@@ -49,10 +48,10 @@ The code provided here is [based](https://github.com/adafruit/Adafruit_CircuitPy
 
 ## Running the code
 
-Once the `ticker.py` script is executed, it will continue to run until the process is terminated. You can manually execute the script on demand, or automatically execute on shell start by editing `/etc/profile` and appending the following to the end of the file:
+Once the `ticker.py` script is executed, it will continue to run until the process is terminated. You can manually execute the script on demand, or automatically execute on shell start by editing `/etc/profile` and appending the following to the end of the file (update the file path as needed):
 
 ```shell
-sudo python3 /home/pi/ticker.py
+python3 /home/pi/mini-ticker/ticker.py
 ```
 
 Other scripts that listen for triggers (e.g. card scan, button press) can be executed in the same way.
