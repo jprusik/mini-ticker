@@ -33,9 +33,13 @@ draw = ImageDraw.Draw(image)
 # font = ImageFont.load_default()
 
 # Load TTF fonts
-font = ImageFont.truetype('./fonts/UbuntuMono-B.ttf', 16)
-alt_font = ImageFont.truetype('./fonts/UbuntuMono-R.ttf', 14)
-small_font = ImageFont.truetype('./fonts/Ubuntu-C.ttf', 13)
+font_height = 16
+alt_font_height = 14
+small_font_height = 13
+
+font = ImageFont.truetype('./fonts/UbuntuMono-B.ttf', font_height)
+alt_font = ImageFont.truetype('./fonts/UbuntuMono-R.ttf', alt_font_height)
+small_font = ImageFont.truetype('./fonts/Ubuntu-C.ttf', small_font_height)
 
 IP = actions.get_device_ip_address()
 
@@ -45,18 +49,39 @@ def draw_reset():
     display.image(image)
 
 def draw_text_lines(line_one, line_two, line_three, line_four):
-    draw.text((x, top), str(line_one), font=alt_font, fill=255)
-    draw.text((x, top+14), str(line_two), font=small_font, fill=255)
-    draw.text((x, top+14+13+2), str(line_three), font=font, fill=255)
-    draw.text((x, top+14+13+16+2), str(line_four), font=small_font, fill=255)
+    draw.text(
+        (x, top),
+        str(line_one),
+        font=alt_font,
+        fill=255
+    )
+    draw.text(
+        (x, top+alt_font_height),
+        str(line_two),
+        font=small_font,
+        fill=255
+    )
+    draw.text(
+        (x, top+alt_font_height+small_font_height+2),
+        str(line_three),
+        font=font,
+        fill=255
+    )
+    draw.text(
+        (x, top+alt_font_height+small_font_height+font_height+2),
+        str(line_four),
+        font=small_font,
+        fill=255
+    )
 
 def update_display():
     DATETIME = actions.get_current_datetime()
     BTC_USD_PRICE = actions.get_bitcoin_usd_price()
     PEOPLE_IN_SPACE = actions.get_people_in_space()
+    TEMP_HUMIDITY = actions.get_temp_and_humidity()
 
     draw_reset()
-    draw_text_lines(IP, DATETIME, BTC_USD_PRICE, PEOPLE_IN_SPACE)
+    draw_text_lines(IP, DATETIME + ' | ' + PEOPLE_IN_SPACE, BTC_USD_PRICE, TEMP_HUMIDITY)
 
     # Update and display image
     display.image(image)

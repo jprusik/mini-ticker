@@ -30,6 +30,7 @@ The code provided here is based on examples ([1](https://github.com/adafruit/Ada
   ```
 
 - (Optional) Enable Wake-on-LAN packet sending `sudo apt-get install etherwake`
+- (Optional) If using a Temperature / Humidity sensor, do `sudo apt-get install libgpiod2`
 - Clone this repo and `cd mini-ticker`
 - Install required packages with `pip3 install -r requirements.txt`
 - (Optional) Edit `/boot/config.txt` at the line `dtparam=i2c_arm=on` and replace it with:
@@ -44,6 +45,12 @@ The code provided here is based on examples ([1](https://github.com/adafruit/Ada
   device_tree_param=spi=on
   dtoverlay=spi-bcm2708
   dtparam=spi=on
+  ```
+
+- Edit or create `.env` in the same directory as `status_display.py` with the following contents:
+
+  ```shell
+  DHT11_PIN=4
   ```
 
 ## Running the code
