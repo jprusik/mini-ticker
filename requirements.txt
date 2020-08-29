@@ -1,5 +1,5 @@
 adafruit-circuitpython-ssd1306===2.8.3
-coinbase==2.1.0
+pi-rc522==2.2.1
 Pillow==7.1.2
 python-dotenv==0.13.0
-pi-rc522==2.2.1
+coinbase==2.1.0

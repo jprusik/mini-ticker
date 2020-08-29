@@ -51,8 +51,30 @@ The code provided here is based on examples ([1](https://github.com/adafruit/Ada
 Once the `ticker.py` script is executed, it will continue to run until the process is terminated. You can manually execute the script on demand, or automatically execute on shell start by editing `/etc/profile` and appending the following to the end of the file (update the file path as needed):
 
 ```shell
-python3 /home/pi/mini-ticker/ticker.py
+python3 /home/pi/mini-ticker
 ```
+
+Alternatively, run any given script as a service:
+
+- Run `sudo systemctl --force --full edit mini-ticker.service` and enter the config:
+
+  ```config
+  [Unit]
+  Description=Mini Ticker
+  Requires=network.target
+  After=multi-user.target
+
+  [Service]
+  WorkingDirectory=/home/pi/mini-ticker
+  User=pi
+  ExecStart=python3 .
+  ExecStopPost=python3 -c 'import ticker; ticker.shutdown()'
+
+  [Install]
+  WantedBy=multi-user.target
+  ```
+
+- Enable the service with `sudo systemctl enable --now mini-ticker.service`, and start it with `sudo systemctl start mini-ticker.service`
 
 Other scripts that listen for triggers (e.g. card scan, button press) can be executed in the same way.
 
