@@ -1,5 +1,6 @@
 adafruit-circuitpython-ssd1306===2.8.3
 adafruit-circuitpython-dht==3.5.0
+adafruit-circuitpython-bmp280==3.2.3
 pi-rc522==2.2.1
 Pillow==7.1.2
 python-dotenv==0.13.0
