@@ -6,7 +6,7 @@ from datetime import datetime
 import requests
 from coinbase.wallet.client import Client
 import dht
-import bmp280
+import bme280
 
 # The client requires non-empty values for authentication, even though the call
 # we're making does not require it.
@@ -44,18 +44,17 @@ def get_device_ip_address():
     return subprocess.run(['hostname', '-I'], stdout=subprocess.PIPE).stdout.decode('utf-8').strip(' \n')
 
 def get_temp_and_humidity():
-    measurements = dht.get_measurements()
-    temperature = bmp280.get_measurements() # bmp has more accurate temp measurements than dht
+    measurements = bme280.get_measurements()
 
-    if not measurements or not temperature:
+    if not measurements:
         return ''
 
     return "{:.1f}º F / {:.1f}º C, RH: {}%".format(
-        temperature['temperature_f'], temperature['temperature_c'], measurements['humidity']
+        measurements['temperature_f'], measurements['temperature_c'], measurements['humidity']
     )
 
 def get_pressure_and_altitude():
-    measurements = bmp280.get_measurements()
+    measurements = bme280.get_measurements()
 
     if not measurements:
         return ''

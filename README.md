@@ -90,3 +90,14 @@ Other scripts that listen for triggers (e.g. card scan, button press) can be exe
 - This build assumes Raspberry Pi Zero hardware - no other Raspberry Pi hardware has been tested with this code.
 - [Ubuntu Font Family](https://design.ubuntu.com/font/) is included in `/fonts` by default. If you wish to use a different font, add them to the `/fonts` directory and update the import references in `ticker.py` (note, line spacing currently presumes Ubuntu fonts and may require adjustments when using other fonts).
 - Tip: You can access the the target pi on your network using the pi's network DNS reference (`raspberrypi` by default). This is particularly useful if your network has dynamic IP address assignment; you can simply `ssh pi@raspberrypi.local`)
+
+### Supported Hardware
+
+| name | description |
+| --- | --- |
+| bme280 | measures temperature, pressure, altitude, and relative humidity |
+| bmp280 | measures temperature, pressure, and altitude |
+| dht11 | measures temperature and relative humidity |
+| dht22 | measures temperature and relative humidity |
+| RC522 | Near-Field Communication (NFC) module |
+| SSD1306 | 128 x 64 dot matrix OLED |
