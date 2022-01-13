@@ -3,6 +3,6 @@ adafruit-circuitpython-dht==3.5.0
 adafruit-circuitpython-bme280==2.4.3
 adafruit-circuitpython-bmp280==3.2.3
 pi-rc522==2.2.1
-Pillow==8.3.2
+Pillow==9.0.0
 python-dotenv==0.13.0
 coinbase==2.1.0
